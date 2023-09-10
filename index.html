@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee data</title>
+    <!--    <link rel="icon" href="style/coffee.png">-->
+    <link rel="stylesheet" href="style/bootstrap.css">
+    <link rel="stylesheet" href="style/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="target/main.js" type="module"></script>
+</head>
+<body>
+<ol class="nav" id="nav">
+</ol>
+
+<div class="container" id="manual_card" hidden>
+    <div  class="card">
+        <header class="card-title">
+            <h1>Employee Data</h1>
+        </header>
+        <form id="manual_form" class="card-body ">
+        </form>
+    </div>
+</div>
+<div class="container" id="random_card" hidden>
+    <div  class="card">
+        <header class="card-title">
+            <h1>Employee Generation Data</h1>
+        </header>
+        <form id="random_form" class="card-body ">
+
+        </form>
+    </div>
+</div>
+<div class="container" id="table_card" hidden>
+    <div class="card">
+        <header class="card-title">
+            <h1>Employees</h1>
+        </header>
+        <div class="card-body" >
+            <table class="table  table-fixed" id="table_employees"></table>
+        </div>
+    </div>
+</div>
+<!--<ol id="list"></ol>-->
+</body>
+</html>

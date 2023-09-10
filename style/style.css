@@ -1,0 +1,28 @@
+.nav-link
+{
+    cursor: pointer;
+    color: inherit;
+}
+.nav-item.active
+{
+    background-color: blue;
+    color: white;
+
+}
+body{
+    height: 100vw;
+    overflow-y: hidden;
+}
+.card-body{
+    height: 300px;
+    overflow-x: auto;
+}
+
+/*tbody {*/
+/*    height: 100px;*/
+/*    overflow-y: auto;*/
+/*    overflow-x: hidden;*/
+/*}*/
+.table {
+    max-height: 800px;
+}
