@@ -1,11 +1,15 @@
-export default class Table
-{
+export default class Table {
     #headers;
     #body;
     #counter = 1;
 
-    constructor(headers, selector)
-    {
+    #callBackDelete;
+    #totalDiv;
+    #totalSalary=0;
+
+
+    constructor({headers, selector, callBackDelete}) {
+        this.#callBackDelete = callBackDelete;
         this.#headers = headers;
         let $table = $(selector);
         let $thead = $('<thead>');
@@ -17,12 +21,13 @@ export default class Table
         $table.css('overflow-x', 'hidden');
         // style="height:120px;width:120px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;"
         $table.append(this.#body);
+        this.#totalDiv = $('#total');
+        this.#totalDiv.html(`<div>total salary: ${this.#totalSalary}</div>`);
     }
 
 
 // "id":"1","email":"shlufman@mail.ru","gender":"female","name":"Konstantin","title":"cleaner","salary":"100","country":"usa","city":"allentown"}
-    #fillThead = thead =>
-    {
+    #fillThead = thead => {
         let $tr = $('<tr>');
         $tr.append($('<th>', {text: '№'}));
         this.#headers.map(header => $('<th>', {text: header})).forEach(th => $tr.append(th));
@@ -30,26 +35,47 @@ export default class Table
         thead.append($tr);
     }
 
-    addRow = data =>
-    {
+
+    delete = id => {
+        if(confirm("Are you sure")) {
+            $('tbody tr').remove();
+            this.#counter = 1;
+            this.#totalSalary=0;
+            this.#totalDiv.html(`<div>total salary: ${this.#totalSalary}</div>`);
+            let res = this.#callBackDelete(id);
+            console.log(res)
+            if (res) {
+                this.addRows(res);
+            }
+        }
+    }
+    addRow = data => {
         this.#body.append(this.#createRow(data));
         this.#counter++;
+        this.#setTotal(data)
     }
 
-    #createRow = data =>
-    {
+    #setTotal=({salary})=>{
+        this.#totalSalary+=+salary;
+        this.#totalDiv.html(`<div>total salary: ${this.#totalSalary}</div>`);
+    }
+    addRows = data => {
+
+        data.forEach(this.addRow);
+    }
+
+    #createRow = data => {
         let $tr = $('<tr>');
-        $tr.attr('dataIndex',this.#counter);
-        $tr.append($('<td>', {text:this.#counter}))
+        // $tr.attr('id', data.id);
+        $tr.append($('<td>', {text: this.#counter}))
         this.#headers.map(header => $('<td>', {text: data[header]}))
             .forEach(td => $tr.append(td));
-        let $trBtnRemove = $('<button>', {text:'remove'});
-        $trBtnRemove.attr('dataIndex',this.#counter);
-        $trBtnRemove.on('click',(event)=>{
-            console.log(event.target.getAttribute('dataIndex'));
-            let index =event.target.getAttribute('dataIndex');
-
-            $("tr[dataIndex="+`${index}`+"]").remove();
+        let $trBtnRemove = $('<button>', {text: 'remove'});
+        $trBtnRemove.attr('id', data.id);
+        $trBtnRemove.on('click', (event) => {
+            console.log(event.target.getAttribute('id'));
+            let id = event.target.getAttribute('id');
+            this.delete(id)
         })
         $tr.append($trBtnRemove);
         return $tr;

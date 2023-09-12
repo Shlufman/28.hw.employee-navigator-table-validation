@@ -1,7 +1,7 @@
 export default class List
 {
     #listElement;
-    constructor(selector)
+    constructor({selector})
     {
         this.#listElement = document.querySelector(selector);
     }

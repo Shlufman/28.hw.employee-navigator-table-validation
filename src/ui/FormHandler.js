@@ -1,6 +1,6 @@
 export default class FormHandler
 {
-    constructor(selector)
+    constructor({selector})
     {
         this.$formElement = $(selector);
     }

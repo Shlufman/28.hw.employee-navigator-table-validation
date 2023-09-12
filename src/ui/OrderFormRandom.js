@@ -8,7 +8,7 @@ export default class OrderFormRandom
     #minSalary;
     #maxSalary;
 
-    constructor(selector)
+    constructor({selector})
     {
         this.#parentForm = document.querySelector(selector);
         if(!this.#parentForm)

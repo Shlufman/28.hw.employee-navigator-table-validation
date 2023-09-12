@@ -7,7 +7,7 @@ export default class OrderForm {
     #cities;
     #salary;
 
-    constructor(selector) {
+    constructor({selector}) {
         this.#parentForm = document.querySelector(selector);
         if (!this.#parentForm) throw `Wrong parent form id ${selector}`;
         this.#parentForm.innerHTML = `<div class="form-group">

@@ -5,7 +5,7 @@ export default class Navigator {
     #activeIndex;
     #controls;//{refLi:refDiv}
 
-    constructor(parentSelector, index) //, navItems
+    constructor({parentSelector, index}) //, navItems
     {
         this.#parentTag = document.querySelector(parentSelector);
         if (!this.#parentTag)
